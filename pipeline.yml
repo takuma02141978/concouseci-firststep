@@ -5,7 +5,7 @@ resources:
 - name: hello
   type: git
   source:
-    uri: https://github.com/making/hello-concourse.git
+    uri: https://github.com/takuma02141978/concouseci-firststep.git
 
 # Jobの定義
 jobs:
