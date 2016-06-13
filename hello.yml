@@ -1,0 +1,27 @@
+---
+resources:
+- name: hello
+  type: git
+  source:
+    uri: https://github.com/takuma02141978/concouseci-firststep.git
+- name: result
+  type: git
+  source:
+    uri: git@gist.github.com:dbc56fbd08f415fa52c784f4cd2e4bd3.git
+    private_key: {{github-private-key}}
+    branch: master
+
+jobs:
+- name: job-hello
+  public: true
+  plan:
+  - get: hello
+    trigger: true
+  - get: result
+  - task: run-hello
+    file: hello/hello.yml
+  - task: commit-log
+    file: hello/commit-log.yml
+  - put: result
+    params:
+      repository: updated-result
